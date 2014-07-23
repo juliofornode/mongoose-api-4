@@ -1,0 +1,17 @@
+/**
+* Very simple style for guestbook
+*
+* Pello Altadill
+*/
+body {
+  padding: 50px;
+  font: 14px arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.gbmsg {
+    margin-bottom: 4em;
+}

@@ -1,0 +1,27 @@
+extends layout
+block content
+  h1= title
+  p Welcome to #{title}
+  form(method='post', action='/guestbook/')
+    div
+        label(for='message') Message
+    div
+        textarea#message(name='message')
+    div
+        label(for ='name')
+    div
+        input#name(name='name')
+    div
+        input(type='submit', value='Save')
+
+    h2 Messages so far
+    if messages
+        .messages
+        div
+            each msg in messages
+                div.gbmsg
+                    p= msg.message
+                    cite= msg.name
+                    i= msg.date
+    else
+        None
