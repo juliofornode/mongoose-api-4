@@ -9,7 +9,7 @@ TODO
 ====
 The obvious stuff:
 
-Validation
-i18n
-Session control
-captcha
+  * Validation
+  * i18n
+  * Session control
+  * captcha
