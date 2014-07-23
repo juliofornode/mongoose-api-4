@@ -1,21 +1,28 @@
-
+/**
+* app.js
+* Main entrypoint for the app
+* https://github.com/pello-io/simple-express-mongoose
+* Pello Altadill - http://pello.info
+*/
 var express = require('express');
 var bodyParser = require('body-parser');
 
 var models = require('./models');
-var index = require('./routes');
+var routes = require('./routes');
 
 var app = express();
 
-
-// If we want post data:
+// If we want to use post data:
 app.use(bodyParser());
 
-app.use('/', index.home);
-app.use('/guestbook', index.guestbook);
+// We set routes
+app.use('/', routes.home);
+app.use('/guestbook', routes.guestbook);
 
+// We set static content
 app.use(express.static('public'));
 
+// And there we go, listening on port 3000
 app.listen(3000, function () {
     console.log('now listening on http://localhost:3000');
 });

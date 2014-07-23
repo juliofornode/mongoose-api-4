@@ -1,15 +1,10 @@
 /**
- * Created by luser on 23/07/14.
+ * guestbook.js
+ * Model file for the guestbook data
+ * https://github.com/pello-io/simple-express-mongoose
+ * Pello Altadill - http://pello.info
  */
 var mongoose = require('mongoose');
-//var mongooseTypes = require("mongoose-types");
-
-//mongooseTypes.loadTypes(mongoose);
-
-//mongoose.connect('mongodb://'+config.db.username+':'+config.db.password+'@'+config.db.host+':'+config.db.port+'/'+config.db.dbname);
-
-var Email = mongoose.SchemaTypes.Email;
-
 
 var guestbookSchema = {
     name: String,
@@ -17,5 +12,6 @@ var guestbookSchema = {
     message: String
 };
 
+// The third parameter is to make sure that mongoose maps
+// the schema to a collection called 'guestbook'
 module.exports = mongoose.model('GuestBook',guestbookSchema, 'guestbook');
-
