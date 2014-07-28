@@ -4,11 +4,10 @@
  * https://github.com/pello-io/simple-express-mongoose
  * Pello Altadill - http://pello.info
  */
-var express = require('express');
-var router = express.Router();
 
-router.get('/', function(req, res) {
-    res.render('index.jade' , {title: 'Home page'});
-});
+module.exports = function (app) {
 
-module.exports = router;
+    app.get('/', function(req, res) {
+        res.render('index.jade' , {title: 'Home page'});
+    });
+}

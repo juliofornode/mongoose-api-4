@@ -5,5 +5,11 @@
  * https://github.com/pello-io/simple-express-mongoose
  * Pello Altadill - http://pello.info
  */
-exports.home = require('./home');
-exports.guestbook = require('./guestbook');
+
+var home = require('./home');
+var guestbook = require('./guestbook');
+
+module.exports = function (app) {
+    home(app);
+    guestbook(app);
+}

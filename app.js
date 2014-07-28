@@ -9,15 +9,18 @@ var bodyParser = require('body-parser');
 
 var models = require('./models');
 var routes = require('./routes');
+var middleware = require('./middleware');
 
 var app = express();
 
 // If we want to use post data:
 app.use(bodyParser());
 
+// We set middleware
+middleware(app);
+
 // We set routes
-app.use('/', routes.home);
-app.use('/guestbook', routes.guestbook);
+routes(app);
 
 // We set static content
 app.use(express.static('public'));
