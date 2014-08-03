@@ -6,10 +6,10 @@
  * any other middleware in a different order into app.js file.
  */
 var logrequest = require('./logrequest');
-var dummyddleware = require('./dummyddleware');
+var sessions = require('./sessions');
 
 module.exports = function (app) {
 	app.use(logrequest);
-	app.use(dummyddleware);
+    app.use(sessions);
 }
 

@@ -8,8 +8,10 @@
 
 var home = require('./home');
 var guestbook = require('./guestbook');
+var session = require('./session');
 
 module.exports = function (app) {
     home(app);
     guestbook(app);
+    session(app);
 }

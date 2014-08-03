@@ -2,26 +2,26 @@
 * app.js
 * Main entrypoint for the app
 * https://github.com/pello-io/simple-express-mongoose
-* Pello Altadill - http://pello.info
+ * Pello Altadill - http://pello.info
 */
 var express = require('express');
+var expressSession = require('express-session');
 var bodyParser = require('body-parser');
 var i18next = require('i18next');
+var mongoose = require('mongoose');
+
+i18next.init();
+
+// read them synchronously!
+/*i18next.init({ getAsync: false , lng: 'es-ES',fallbackLng: 'es-ES' ,preload: ['en-US', 'es-ES'],debug: true},function(t) {
+    console.log('Loaded resources ');
+    console.log('Lang:' + i18next.lng() +', App name' + i18next.t("app.name"));
+})*/;
+
 
 var models = require('./models');
 var routes = require('./routes');
 var middleware = require('./middleware');
-
-
-//i18n.init({  lng: 'en-US' ,preload: ['en-US', 'es-ES'],debug: true});
-/*i18n.init({ preload: ['en-US', 'es-ES'],debug: true}), function (t) {
- console.log('Loaded resources ');
- }*/;
-i18next.init({  lng: 'es-ES',fallbackLng: 'es-ES' ,preload: ['en-US', 'es-ES'],debug: true},function(t) {
-    console.log('Loaded resources ');
-    console.log('Lang:' + i18next.lng() +', ' + i18next.t("form-comment.name_error") + ', ' + i18next.t("app.name"));
-    i18next.setLng('es-ES', function(t) { /* loading done */ });
-});
 
 
 var app = express();
@@ -31,7 +31,15 @@ app.use(i18next.handle);
 i18next.registerAppHelper(app)
 
 // If we want to use post data:
-app.use(bodyParser());
+app.use(bodyParser({extended: true}));
+
+
+// For session data:
+app.use(expressSession({secret: 'tannedkrab',
+            resave: true,
+            saveUninitialized: true,
+            key: 'session',
+            store: require('mongoose-session')(mongoose)}) );
 
 // We set middleware
 middleware(app);
